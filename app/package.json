@@ -1,0 +1,12 @@
+{
+	"name": "app",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"dependencies": {
+		"@aajsa/moyasar-client": "workspace:*"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	}
+}

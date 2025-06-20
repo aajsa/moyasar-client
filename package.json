@@ -1,0 +1,22 @@
+{
+	"type": "module",
+	"private": true,
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"scripts": {
+		"dev": "bun --watch './packages/*' run dev",
+		"build": "bun -F './packages/*' build",
+		"format": "biome format --write .",
+		"lint": "biome lint .",
+		"lint:fix": "biome lint --write .",
+		"release": "bun x git-ensure -a && bunx bumpp --commit --tag --push && bun publish --access public"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.0.0",
+		"path-to-regexp": "^8.2.0",
+		"tsdown": "^0.12.8",
+		"zod": "^3.25.67"
+	}
+}
