@@ -1,7 +1,7 @@
 {
 	"name": "@aajsa/moyasar-client",
 	"type": "module",
-	"version": "0.5.0",
+	"version": "0.6.0",
 	"description": "A lightweight and type-safe TypeScript client for interacting with Moyasar Payment Gateway APIs.",
 	"keywords": [
 		"client",
@@ -34,14 +34,6 @@
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.js",
 	"types": "./dist/index.d.cts",
-	"typesVersions": {
-		"*": {
-			"*": [
-				"./dist/*",
-				"./*"
-			]
-		}
-	},
 	"files": [
 		"LICENSE.md",
 		"dist"
@@ -53,7 +45,7 @@
 	"scripts": {
 		"build": "tsdown"
 	},
-	"peerdependencies": {
+	"peerDependencies": {
 		"zod": "^3.25.67"
 	},
 	"devDependencies": {

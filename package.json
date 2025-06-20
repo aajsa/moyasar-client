@@ -6,7 +6,6 @@
 		"packages/*"
 	],
 	"scripts": {
-		"dev": "bun --watch './packages/*' run dev",
 		"build": "bun -F './packages/*' build",
 		"format": "biome format --write .",
 		"lint": "biome lint .",
@@ -19,6 +18,5 @@
 		"tsdown": "^0.12.8",
 		"zod": "^3.25.67"
 	},
-	"name": "",
 	"version": ""
 }
