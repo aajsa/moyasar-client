@@ -3,12 +3,21 @@ import { MetaResponseSchema, paramPathIdSchema } from './common'
 
 export const WebhooksEventsEnum = z.enum([
 	'payment_paid',
-	'payment_faild',
-	'payment_refunded',
+	'payment_failed',
 	'payment_voided',
 	'payment_authorized',
 	'payment_captured',
+	'payment_refunded',
+	'payment_abandoned',
 	'payment_verified',
+	'payment_canceled',
+	'payment_expired',
+	'balance_transferred',
+	'payout_initiated',
+	'payout_paid',
+	'payout_failed',
+	'payout_canceled',
+	'payout_returned',
 ])
 
 export const WebhookResponseSchema = z.object({
