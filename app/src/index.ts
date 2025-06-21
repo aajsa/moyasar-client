@@ -1,10 +1,13 @@
 import { createMoyasar } from '@aajsa/moyasar-client'
 
+const uuid = crypto.randomUUID()
+const mysr = createMoyasar()
+
 const data = await createMoyasar({
 	keyType: 'public',
 }).createPayment({
 	body: {
-		given_id: crypto.randomUUID(),
+		given_id: uuid,
 		amount: 100,
 		currency: 'SAR',
 		source: {
@@ -20,3 +23,19 @@ const data = await createMoyasar({
 })
 
 console.log(data?.source?.transaction_url)
+
+const getPaymentId = await mysr.getPaymentId({
+	params: { id: uuid },
+})
+
+console.log(getPaymentId)
+
+const createWebhook = await mysr.createWebhook({
+	body: {
+		url: 'https://example.com/test',
+		shared_secret: 'any secert key',
+		events: ['payment_paid', 'payment_faild'],
+	},
+})
+
+console.log(createWebhook)
