@@ -1,6 +1,6 @@
 import { compile } from 'path-to-regexp'
-import type { ApiHandler, Prettify, RouteOptions } from './types'
 import type { z } from 'zod/v4-mini'
+import type { ApiHandler, Prettify, RouteOptions } from './types'
 
 export const routeHandler = <T extends RouteOptions>(
 	baseUrl: string,

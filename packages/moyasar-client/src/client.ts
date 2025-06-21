@@ -1,8 +1,7 @@
-import type { ApiHandler, RouteOptions, ClientConfig } from './types'
-import { routeHandler } from './utils'
 import { apiUrl, publicKey, secretKey } from './env'
+import type { ApiHandler, ClientConfig, RouteOptions } from './types'
+import { routeHandler } from './utils'
 
-const s = 245
 export const createClient = <T extends Record<string, RouteOptions>>(
 	schema: T,
 	config?: ClientConfig,
