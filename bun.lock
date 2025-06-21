@@ -11,7 +11,7 @@
     },
     "packages/moyasar-client": {
       "name": "@aajsa/moyasar-client",
-      "version": "0.7.0",
+      "version": "0.7.2",
       "devDependencies": {
         "@types/bun": "^1.2.16",
         "typescript": "^5.8.3",
