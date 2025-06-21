@@ -2,6 +2,7 @@ import type { ApiHandler, RouteOptions, ClientConfig } from './types'
 import { routeHandler } from './utils'
 import { apiUrl, publicKey, secretKey } from './env'
 
+const s = 245
 export const createClient = <T extends Record<string, RouteOptions>>(
 	schema: T,
 	config?: ClientConfig,
@@ -11,6 +12,10 @@ export const createClient = <T extends Record<string, RouteOptions>>(
 	const apiKey = config?.apiKey ?? (keyType === 'public' ? publicKey : secretKey)
 	const disableValidation = config?.disableValidation ?? false
 	const fetchOptions = config?.fetchOptions
+
+	if (!apiKey) {
+		throw new Error('API key is required but was not provided.')
+	}
 
 	const client = {} as { [K in keyof T]: ApiHandler<T[K]> }
 	for (const key in schema) {

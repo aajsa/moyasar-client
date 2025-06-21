@@ -2,9 +2,8 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "mysr",
       "devDependencies": {
-        "@biomejs/biome": "^2.0.0",
+        "@biomejs/biome": "2.0.0",
         "path-to-regexp": "^8.2.0",
         "tsdown": "^0.12.8",
         "zod": "^3.25.67",
@@ -12,10 +11,13 @@
     },
     "packages/moyasar-client": {
       "name": "@aajsa/moyasar-client",
-      "version": "0.5.0",
+      "version": "0.7.0",
       "devDependencies": {
         "@types/bun": "^1.2.16",
         "typescript": "^5.8.3",
+      },
+      "peerDependencies": {
+        "zod": "^3.25.67",
       },
     },
   },
@@ -110,7 +112,7 @@
 
     "ast-kit": ["ast-kit@2.1.0", "", { "dependencies": { "@babel/parser": "^7.27.3", "pathe": "^2.0.3" } }, "sha512-ROM2LlXbZBZVk97crfw8PGDOBzzsJvN2uJCmwswvPUNyfH14eg90mSN3xNqsri1JS1G9cz0VzeDUhxJkTrr4Ew=="],
 
-    "birpc": ["birpc@2.3.0", "", {}, "sha512-ijbtkn/F3Pvzb6jHypHRyve2QApOCZDR25D/VnkY2G/lBNcXCTsnsCxgY4k4PkVB7zfwzYbY3O9Lcqe3xufS5g=="],
+    "birpc": ["birpc@2.4.0", "", {}, "sha512-5IdNxTyhXHv2UlgnPHQ0h+5ypVmkrYHzL8QT+DwFZ//2N/oNV8Ch+BCRmTJ3x6/z9Axo/cXYBc9eprsUVK/Jsg=="],
 
     "bun-types": ["bun-types@1.2.16", "", { "dependencies": { "@types/node": "*" } }, "sha512-ciXLrHV4PXax9vHvUrkvun9VPVGOVwbbbBF/Ev1cXz12lyEZMoJpIJABOfPcN9gDJRaiKF9MVbSygLg4NXu3/A=="],
 

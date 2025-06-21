@@ -6,17 +6,16 @@
 		"packages/*"
 	],
 	"scripts": {
-		"build": "bun -F './packages/*' build",
-		"format": "biome format --write .",
-		"lint": "biome lint .",
-		"lint:fix": "biome lint --write .",
-		"release": "bun x git-ensure -a && bunx bumpp --commit --tag --push && bun publish --access public"
+		"build": "bun --filter './packages/*' build",
+		"dev": "bun --filter './packages/*' dev",
+		"lint": "biome check .",
+		"lint:fix": "biome check --write .",
+		"release": "bun --filter './packages/*' release"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.0.0",
+		"@biomejs/biome": "2.0.0",
 		"path-to-regexp": "^8.2.0",
 		"tsdown": "^0.12.8",
 		"zod": "^3.25.67"
-	},
-	"version": ""
+	}
 }

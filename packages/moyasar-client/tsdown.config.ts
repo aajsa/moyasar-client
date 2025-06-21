@@ -1,12 +1,11 @@
-import { defineConfig, type Options } from "tsdown"
+import { defineConfig, type Options } from 'tsdown'
 
 export const baseConfig: Options = {
 	clean: true,
 	dts: true,
 	fixedExtension: false,
-	inputOptions: { resolve: { tsconfigFilename: "tsconfig.json" } },
-	platform: "neutral",
-	removeNodeProtocol: true,
+	inputOptions: { resolve: { tsconfigFilename: 'tsconfig.json' } },
+	platform: 'neutral',
 	unbundle: true,
 	unused: false,
 }
@@ -14,8 +13,8 @@ export const baseConfig: Options = {
 const config: ReturnType<typeof defineConfig> = defineConfig([
 	{
 		...baseConfig,
-		entry: ["./src/index.ts"],
-		format: ["cjs", "esm"],
+		entry: ['./src/index.ts'],
+		format: ['cjs', 'esm'],
 	},
 	{
 		...baseConfig,
