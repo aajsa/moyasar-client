@@ -1,4 +1,3 @@
-import { compile } from 'path-to-regexp'
 import type { z } from 'zod/v4-mini'
 import type { ApiHandler, Prettify, RouteOptions } from './types'
 
@@ -7,7 +6,7 @@ export const routeHandler = <T extends RouteOptions>(
 	route: T,
 	apiKey?: string,
 	fetchOptions?: RequestInit,
-	disableValidation?: boolean,
+	disableValidation?: boolean
 ): ApiHandler<T> => {
 	return async (input: any): Promise<Prettify<z.infer<T['output']>>> => {
 		const { body, query, params } = input
@@ -19,8 +18,7 @@ export const routeHandler = <T extends RouteOptions>(
 			route.query?.parse?.(query)
 		}
 
-		const compilePath = compile(path)
-		let url = baseUrl + compilePath(params ?? {})
+		let url = baseUrl + (path.includes(':') ? path.replace(':id', params.id) : path)
 
 		if (query) {
 			const searchParams = new URLSearchParams()
@@ -48,7 +46,6 @@ export const routeHandler = <T extends RouteOptions>(
 
 		return await fetch(url, config).then(async (response) => {
 			const data = await response.json()
-
 			if (!response.ok) {
 				return data as any
 			}
