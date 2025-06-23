@@ -115,7 +115,7 @@ const createBulkPayoutsSchema = z.object({
 			]),
 			comment: z.optional(z.string()),
 			metadata: z.optional(z.record(z.string(), z.string())),
-		})
+		}),
 	),
 })
 

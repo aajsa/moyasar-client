@@ -5,13 +5,13 @@ const env = z
 		MOYASAR_SECRET_KEY: z.optional(
 			z
 				.string({ error: 'MOYASAR_SECRET_KEY must be provided in environment' })
-				.check(z.startsWith('sk_'))
+				.check(z.startsWith('sk_')),
 		),
 
 		MOYASAR_PUBLIC_KEY: z.optional(
 			z
 				.string({ error: 'MOYASAR_PUBLIC_KEY must be provided in environment' })
-				.check(z.startsWith('pk_'))
+				.check(z.startsWith('pk_')),
 		),
 
 		MOYASAR_API_URL: z._default(z.url(), 'https://api.moyasar.com/v1'),

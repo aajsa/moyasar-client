@@ -22,7 +22,7 @@ export const applePayEndpoints = {
 				signature: z.string(),
 				operationalAnalyticsIdentifier: z.string(),
 				retries: z.number(),
-			})
+			}),
 		),
 	},
 }

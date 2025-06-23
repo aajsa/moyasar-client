@@ -51,7 +51,7 @@ const createBulkInvoiceSchema = z.array(
 		success_url: z.url(),
 		back_url: z.url(),
 		expired_at: z.string(),
-	})
+	}),
 )
 
 const listInvoicesSchema = z.nullish(
@@ -62,14 +62,14 @@ const listInvoicesSchema = z.nullish(
 		'created[gt]': z.string(),
 		'created[lt]': z.string(),
 		metadata: z.string(),
-	})
+	}),
 )
 
 const updateInvoice = z.partial(
 	z.object({
 		description: z.string(),
 		metadata: z.record(z.string(), z.string()),
-	})
+	}),
 )
 
 export const invoicesEndpoints = {

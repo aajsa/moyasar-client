@@ -52,8 +52,8 @@ const stcpay = await mysr.createPayment({
 		currency: 'SAR',
 		source: {
 			type: 'stcpay',
-			mobile: '0510510939',
+			mobile: '0500000000',
 		},
-		callback_url: 'https://google.com', // i will fix it.
+		callback_url: 'https://google.com', // unnecessary, but you should include it. I will fix it inshallah.
 	},
 })

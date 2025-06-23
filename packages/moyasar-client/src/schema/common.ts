@@ -9,7 +9,7 @@ export const MetaResponseSchema = z.partial(
 		prev_page: z.number(),
 		total_pages: z.number(),
 		total_count: z.number(),
-	})
+	}),
 )
 
 /*

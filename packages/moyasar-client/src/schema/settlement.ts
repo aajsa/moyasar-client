@@ -35,7 +35,7 @@ export const settlementsEndpoints = {
 				id: z.uuid(),
 				'created[gt]': z.string(),
 				'created[lt]': z.string(),
-			})
+			}),
 		),
 
 		output: z.object({

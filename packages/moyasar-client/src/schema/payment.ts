@@ -113,15 +113,15 @@ const listPaymentSchema = z.optional(
 			card_last_digits: z.string().check(z.minLength(4)),
 			receipt_no: z.string(),
 			metadata: z.record(z.string(), z.string()),
-		})
-	)
+		}),
+	),
 )
 
 const updatePaymentSchema = z.partial(
 	z.object({
 		description: z.string(),
 		metadata: z.record(z.string(), z.string()),
-	})
+	}),
 )
 
 const paymentAdjustmentSchema = z.object({
@@ -143,7 +143,7 @@ export const paymentsEndpoints = {
 			z.object({
 				payments: z.array(PaymentResponseSchema),
 				meta: MetaResponseSchema,
-			})
+			}),
 		),
 	},
 	createPayment: {

@@ -6,7 +6,7 @@ export const routeHandler = <T extends RouteOptions>(
 	route: T,
 	apiKey?: string,
 	fetchOptions?: RequestInit,
-	disableValidation?: boolean
+	disableValidation?: boolean,
 ): ApiHandler<T> => {
 	return async (input: any): Promise<Prettify<z.infer<T['output']>>> => {
 		const { body, query, params } = input

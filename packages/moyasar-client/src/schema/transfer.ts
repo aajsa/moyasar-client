@@ -42,7 +42,7 @@ export const transfersEndpoints = {
 					amount: z.number(),
 					fee: z.number(),
 					tax: z.number(),
-				})
+				}),
 			),
 			meta: MetaResponseSchema,
 		}),
