@@ -1,7 +1,7 @@
 import { z } from 'zod/v4-mini'
 import { MetaResponseSchema, paramPathIdSchema } from './common'
 
-export const WebhooksEventsEnum = z.enum([
+const WebhooksEventsEnum = z.enum([
 	'payment_paid',
 	'payment_failed',
 	'payment_voided',
@@ -20,7 +20,7 @@ export const WebhooksEventsEnum = z.enum([
 	'payout_returned',
 ])
 
-export const WebhookResponseSchema = z.object({
+const WebhookResponseSchema = z.object({
 	id: z.uuid(),
 	http_method: z.string(),
 	url: z.url(),
@@ -28,7 +28,7 @@ export const WebhookResponseSchema = z.object({
 	created_at: z.string(),
 })
 
-export const WebhookAttemptResponseSchema = z.object({
+const WebhookAttemptResponseSchema = z.object({
 	id: z.uuid(),
 	webhook_id: z.uuid(),
 	event_id: z.uuid(),
@@ -42,7 +42,7 @@ export const WebhookAttemptResponseSchema = z.object({
 	created_at: z.string(),
 })
 
-export const createWebhookSchema = z.object({
+const createWebhookSchema = z.object({
 	url: z.url(),
 	shared_secret: z.string(),
 	events: z.array(WebhooksEventsEnum),

@@ -1,8 +1,8 @@
 import { z } from 'zod/v4-mini'
 
-export const TokenStatusEnum = z.enum(['initiated', 'active', 'inactive'])
+const TokenStatusEnum = z.enum(['initiated', 'active', 'inactive'])
 
-export const TokenResponseSchema = z.object({
+const TokenResponseSchema = z.object({
 	id: z.string().check(z.startsWith('token_')),
 	status: TokenStatusEnum,
 	brand: z.string(),
@@ -20,7 +20,7 @@ export const TokenResponseSchema = z.object({
 	expires_at: z.string(),
 })
 
-export const createTokenSchema = z.object({
+const createTokenSchema = z.object({
 	name: z.string().check(z.minLength(1), z.maxLength(255)),
 	number: z.string().check(z.regex(/^\d{16,19}$/)),
 	month: z.number().check(z.minimum(1), z.maximum(12)),
@@ -29,7 +29,7 @@ export const createTokenSchema = z.object({
 	callback_url: z.url(),
 })
 
-export const tokenIdSchema = z.object({
+const tokenIdSchema = z.object({
 	id: z.string().check(z.startsWith('token_')),
 })
 

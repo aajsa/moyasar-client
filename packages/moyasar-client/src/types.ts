@@ -22,7 +22,7 @@ type OptionalKey<K extends string, T> = undefined extends z.infer<T>
 	? { [P in K]?: z.infer<T> }
 	: { [P in K]: z.infer<T> }
 
-export type RouteArgs<T extends RouteOptions> = Prettify<
+type RouteArgs<T extends RouteOptions> = Prettify<
 	(T['input'] extends z.ZodMiniType<any> ? OptionalKey<'body', T['input']> : {}) &
 		(T['query'] extends z.ZodMiniType<any> ? OptionalKey<'query', T['query']> : {}) &
 		(T['params'] extends z.ZodMiniType<any> ? OptionalKey<'params', T['params']> : {})

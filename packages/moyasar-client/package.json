@@ -1,52 +1,53 @@
 {
-  "name": "@aajsa/moyasar-client",
-  "type": "module",
-  "version": "0.7.3",
-  "description": "A lightweight and type-safe TypeScript client for interacting with Moyasar Payment Gateway APIs.",
-  "keywords": [
-    "client",
-    "moyasar",
-    "fetch",
-    "client",
-    "moyasar-api"
-  ],
-  "license": "MIT",
-  "author": {
-    "name": "aazjsa",
-    "email": "aaj.dev@aaj.sa"
-  },
-  "homepage": "https://github.com/aajsa/moyasar-client#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aajsa/moyasar-client.git",
-    "directory": "packages/moyasar-client"
-  },
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./types": {
-      "types": "./dist/types.d.ts"
-    }
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.cts",
-  "files": [
-    "LICENSE.md",
-    "dist"
-  ],
-  "sideEffects": false,
-  "scripts": {
-    "build": "tsdown"
-  },
-  "peerDependencies": {
-    "zod": "^3.25.67"
-  },
-  "devDependencies": {
-    "@types/bun": "^1.2.16",
-    "typescript": "^5.8.3"
-  }
+	"name": "@aajsa/moyasar-client",
+	"type": "module",
+	"version": "0.7.3",
+	"description": "A lightweight and type-safe TypeScript client for interacting with Moyasar Payment Gateway APIs.",
+	"keywords": [
+		"client",
+		"moyasar",
+		"fetch",
+		"client",
+		"moyasar-api"
+	],
+	"license": "MIT",
+	"author": {
+		"name": "aazjsa",
+		"email": "aaj.dev@aaj.sa"
+	},
+	"homepage": "https://github.com/aajsa/moyasar-client#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/aajsa/moyasar-client.git",
+		"directory": "packages/moyasar-client"
+	},
+	"exports": {
+		"./package.json": "./package.json",
+		".": {
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs"
+		},
+		"./types": {
+			"types": "./dist/types.d.ts"
+		}
+	},
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.cts",
+	"files": [
+		"LICENSE.md",
+		"dist"
+	],
+	"sideEffects": false,
+	"scripts": {
+		"build": "tsdown"
+	},
+	"peerDependencies": {
+		"zod": "^3.25.67"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.2.16",
+		"typescript": "^5.8.3",
+		"path-to-regexp": "^8.2.0"
+	}
 }

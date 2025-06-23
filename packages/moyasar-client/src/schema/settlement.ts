@@ -3,7 +3,7 @@ import { MetaResponseSchema, paramPathIdSchema } from './common'
 
 export const RecipientTypeEnum = z.enum(['Entity', 'Platform', 'Beneficiary'])
 
-export const SettlementsResponseSchema = z.object({
+const SettlementsResponseSchema = z.object({
 	id: z.uuid(),
 	recipient_type: RecipientTypeEnum,
 	recipient_id: z.uuid(),
@@ -35,7 +35,7 @@ export const settlementsEndpoints = {
 				id: z.uuid(),
 				'created[gt]': z.string(),
 				'created[lt]': z.string(),
-			}),
+			})
 		),
 
 		output: z.object({

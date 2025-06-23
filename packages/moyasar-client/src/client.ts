@@ -4,7 +4,7 @@ import { routeHandler } from './utils'
 
 export const createClient = <T extends Record<string, RouteOptions>>(
 	schema: T,
-	config?: ClientConfig,
+	config?: ClientConfig
 ): { [K in keyof T]: ApiHandler<T[K]> } => {
 	const baseUrl = apiUrl ?? 'https://api.moyasar.com/v1'
 	const keyType = config?.keyType ?? 'secret'

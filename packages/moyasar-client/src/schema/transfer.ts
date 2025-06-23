@@ -2,7 +2,7 @@ import { z } from 'zod/v4-mini'
 import { MetaResponseSchema, paramPathIdSchema } from './common'
 import { RecipientTypeEnum } from './settlement'
 
-export const TransferResponseSchema = z.object({
+const TransferResponseSchema = z.object({
 	id: z.uuid(),
 	recipient_type: RecipientTypeEnum,
 	recipient_id: z.uuid(),
@@ -42,7 +42,7 @@ export const transfersEndpoints = {
 					amount: z.number(),
 					fee: z.number(),
 					tax: z.number(),
-				}),
+				})
 			),
 			meta: MetaResponseSchema,
 		}),

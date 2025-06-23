@@ -2,7 +2,7 @@ import { z } from 'zod/v4-mini'
 import { MetaResponseSchema, paramPathIdSchema } from './common'
 import { PaymentResponseSchema } from './payment'
 
-export const InvoiceStatusEnum = z.enum([
+const InvoiceStatusEnum = z.enum([
 	'initiated',
 	'paid',
 	'failed',
@@ -13,7 +13,7 @@ export const InvoiceStatusEnum = z.enum([
 	'voided',
 ])
 
-export const InvoiceResponseSchema = z.object({
+const InvoiceResponseSchema = z.object({
 	id: z.uuid(),
 	status: InvoiceStatusEnum,
 	amount: z.number(),
@@ -32,7 +32,7 @@ export const InvoiceResponseSchema = z.object({
 	metadata: z.nullish(z.record(z.string(), z.string())),
 })
 
-export const createInvoiceSchema = z.object({
+const createInvoiceSchema = z.object({
 	amount: z.number(),
 	currency: z.string().check(z.length(3)),
 	description: z.string(),
@@ -42,7 +42,7 @@ export const createInvoiceSchema = z.object({
 	expired_at: z.string(),
 })
 
-export const createBulkInvoiceSchema = z.array(
+const createBulkInvoiceSchema = z.array(
 	z.object({
 		amount: z.number(),
 		currency: z.string().check(z.length(3)),
@@ -51,10 +51,10 @@ export const createBulkInvoiceSchema = z.array(
 		success_url: z.url(),
 		back_url: z.url(),
 		expired_at: z.string(),
-	}),
+	})
 )
 
-export const listInvoicesSchema = z.nullish(
+const listInvoicesSchema = z.nullish(
 	z.object({
 		id: z.uuid(),
 		page: z.number(),
@@ -62,14 +62,14 @@ export const listInvoicesSchema = z.nullish(
 		'created[gt]': z.string(),
 		'created[lt]': z.string(),
 		metadata: z.string(),
-	}),
+	})
 )
 
-export const updateInvoice = z.partial(
+const updateInvoice = z.partial(
 	z.object({
 		description: z.string(),
 		metadata: z.record(z.string(), z.string()),
-	}),
+	})
 )
 
 export const invoicesEndpoints = {

@@ -1,7 +1,7 @@
 import { z } from 'zod/v4-mini'
 import { MetaResponseSchema, paramPathIdSchema } from './common'
 
-export const PaymentStatusEnum = z.enum([
+const PaymentStatusEnum = z.enum([
 	'initiated',
 	'paid',
 	'authorized',
@@ -56,7 +56,7 @@ export const PaymentResponseSchema = z.object({
 	}),
 })
 
-export const createPaymentSchema = z.object({
+const createPaymentSchema = z.object({
 	given_id: z.uuid(),
 	amount: z.number().check(z.positive()),
 	currency: z.string().check(z.length(3)),
@@ -100,11 +100,7 @@ export const createPaymentSchema = z.object({
 	apply_coupon: z.optional(z.boolean()),
 })
 
-export const getPaymentSchema = z.object({
-	id: z.uuid(),
-})
-
-export const listPaymentSchema = z.optional(
+const listPaymentSchema = z.optional(
 	z.partial(
 		z.object({
 			page: z.number(),
@@ -117,18 +113,18 @@ export const listPaymentSchema = z.optional(
 			card_last_digits: z.string().check(z.minLength(4)),
 			receipt_no: z.string(),
 			metadata: z.record(z.string(), z.string()),
-		}),
-	),
+		})
+	)
 )
 
-export const updatePaymentSchema = z.partial(
+const updatePaymentSchema = z.partial(
 	z.object({
 		description: z.string(),
 		metadata: z.record(z.string(), z.string()),
-	}),
+	})
 )
 
-export const paymentAdjustmentSchema = z.object({
+const paymentAdjustmentSchema = z.object({
 	amount: z.number(),
 })
 
@@ -147,7 +143,7 @@ export const paymentsEndpoints = {
 			z.object({
 				payments: z.array(PaymentResponseSchema),
 				meta: MetaResponseSchema,
-			}),
+			})
 		),
 	},
 	createPayment: {

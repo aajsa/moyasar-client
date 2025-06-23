@@ -45,17 +45,15 @@ const deleteWehbook = await mysr.deleteWebhook({
 })
 */
 
-const stcpay = mysr.createPayment({
+const stcpay = await mysr.createPayment({
 	body: {
-		given_id: uuid,
+		given_id: crypto.randomUUID(),
 		amount: 100,
 		currency: 'SAR',
 		source: {
 			type: 'stcpay',
 			mobile: '0510510939',
 		},
-		callback_url: '',
+		callback_url: 'https://google.com', // i will fix it.
 	},
 })
-
-console.log(stcpay)

@@ -1,19 +1,11 @@
 import { length, z } from 'zod/v4-mini'
 import { MetaResponseSchema, paramPathIdSchema } from './common'
 
-export const PayoutAccountTypeEnum = z.enum(['bank', 'wallet'])
+const PayoutAccountTypeEnum = z.enum(['bank', 'wallet'])
 
-// Payouts
-export const PayoutStatusEnum = z.enum([
-	'queued',
-	'initiated',
-	'paid',
-	'failed',
-	'canceled',
-	'returned',
-])
+const PayoutStatusEnum = z.enum(['queued', 'initiated', 'paid', 'failed', 'canceled', 'returned'])
 
-export const PayoutPurposeEnum = z.enum([
+const PayoutPurposeEnum = z.enum([
 	'bills_or_rent',
 	'expenses_services',
 	'purchase_assets',
@@ -36,9 +28,9 @@ export const PayoutPurposeEnum = z.enum([
 	'own_account_transfer',
 ])
 
-export const PayoutChannelEnum = z.enum(['internal', 'ips', 'sarie'])
+const PayoutChannelEnum = z.enum(['internal', 'ips', 'sarie'])
 
-export const PayoutResponseSchema = z.object({
+const PayoutResponseSchema = z.object({
 	id: z.uuid(),
 	source_id: z.uuid(),
 	sequence_number: z.string().check(z.maxLength(16)),
@@ -69,7 +61,7 @@ export const PayoutResponseSchema = z.object({
 	metadata: z.nullish(z.record(z.string(), z.string())),
 })
 
-export const PayoutAccountResponseSchema = z.object({
+const PayoutAccountResponseSchema = z.object({
 	id: z.uuid(),
 	account_type: PayoutAccountTypeEnum,
 	currency: z.string().check(z.length(3)),
@@ -77,7 +69,7 @@ export const PayoutAccountResponseSchema = z.object({
 	created_at: z.string(),
 })
 
-export const createPayoutSchema = z.object({
+const createPayoutSchema = z.object({
 	source_id: z.uuid(),
 	sequence_number: z.optional(z.string().check(length(16))),
 	amount: z.number().check(z.positive()),
@@ -100,7 +92,7 @@ export const createPayoutSchema = z.object({
 	metadata: z.nullish(z.record(z.string(), z.string())),
 })
 
-export const createBulkPayoutsSchema = z.object({
+const createBulkPayoutsSchema = z.object({
 	source_id: z.uuid(),
 	payouts: z.array(
 		z.object({
@@ -123,7 +115,7 @@ export const createBulkPayoutsSchema = z.object({
 			]),
 			comment: z.optional(z.string()),
 			metadata: z.optional(z.record(z.string(), z.string())),
-		}),
+		})
 	),
 })
 
