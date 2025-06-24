@@ -5,8 +5,8 @@
 		"packages/*"
 	],
 	"scripts": {
-		"build": "bun --filter './packages/*' build",
-		"prepublish": "bun --filter './packages/*' prepublish",
+		"build": "bun -F './packages/*' build",
+		"prepublish": "bun -F './packages/*' prepublish",
 		"lint": "biome check .",
 		"lint:fix": "biome check --write ."
 	},
