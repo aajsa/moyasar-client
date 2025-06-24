@@ -5,7 +5,7 @@ export const routeHandler = <T extends RouteOptions>(
 	route: T,
 	apiKey?: string,
 	fetchOptions?: RequestInit,
-	disableValidation?: boolean
+	disableValidation?: boolean,
 ) => {
 	return async (input: any) => {
 		const { body, query, params } = input ?? {}
