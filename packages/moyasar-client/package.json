@@ -41,7 +41,7 @@
 	"sideEffects": false,
 	"scripts": {
 		"build": "tsdown",
-		"prepublish": "bunx bump && bun run build"
+		"prepublish": "bunx bump && bun run build && bun publish --dry-run"
 	},
 	"peerDependencies": {
 		"zod": "^3.25.67"
