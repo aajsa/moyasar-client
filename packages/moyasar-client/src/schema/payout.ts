@@ -1,4 +1,4 @@
-import { length, z } from 'zod/v4-mini'
+import { z } from 'zod/v4-mini'
 import { MetaResponseSchema, paramPathIdSchema } from './common'
 
 const PayoutAccountTypeEnum = z.enum(['bank', 'wallet'])
@@ -71,7 +71,7 @@ const PayoutAccountResponseSchema = z.object({
 
 const createPayoutSchema = z.object({
 	source_id: z.uuid(),
-	sequence_number: z.optional(z.string().check(length(16))),
+	sequence_number: z.optional(z.string().check(z.length(16))),
 	amount: z.number().check(z.positive()),
 	purpose: PayoutPurposeEnum,
 	destination: z.discriminatedUnion('type', [
@@ -96,7 +96,7 @@ const createBulkPayoutsSchema = z.object({
 	source_id: z.uuid(),
 	payouts: z.array(
 		z.object({
-			sequence_number: z.optional(z.string().check(length(16))),
+			sequence_number: z.optional(z.string().check(z.length(16))),
 			amount: z.number().check(z.positive()),
 			purpose: PayoutPurposeEnum,
 			destination: z.discriminatedUnion('type', [
@@ -115,7 +115,7 @@ const createBulkPayoutsSchema = z.object({
 			]),
 			comment: z.optional(z.string()),
 			metadata: z.optional(z.record(z.string(), z.string())),
-		}),
+		})
 	),
 })
 
