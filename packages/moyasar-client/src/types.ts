@@ -1,4 +1,5 @@
 import type { ZodMiniType, z } from 'zod/v4-mini'
+import type { schema } from './schema'
 
 export type Prettify<T> = { [K in keyof T]: T[K] } & {}
 
@@ -29,5 +30,9 @@ type RouteArgs<T extends RouteOptions> = Prettify<
 >
 
 export type ApiHandler<T extends RouteOptions> = {} extends RouteArgs<T>
-	? (input?: RouteArgs<T>) => Promise<Prettify<z.infer<T['output']>>>
-	: (input: RouteArgs<T>) => Promise<Prettify<z.infer<T['output']>>>
+	? (input?: Prettify<RouteArgs<T>>) => Promise<Prettify<z.infer<T['output']>>>
+	: (input: Prettify<RouteArgs<T>>) => Promise<Prettify<z.infer<T['output']>>>
+
+export type MoyasarClient = {
+	[K in keyof typeof schema]: ApiHandler<(typeof schema)[K]>
+}

@@ -42,18 +42,18 @@ const uuid = crypto.randomUUID()
 
 export const data = await mysr.createPayment({
 	body: {
-		given_id: uuid,
-		amount: 100, // Amount in cents
+		given_id: uuid, // Prefer using UUID version 4
+		amount: 100, // In halalas (100 halalas = 1 SAR)
 		currency: 'SAR',
 		source: {
 			type: 'creditcard',
 			name: 'Saud Fawaz',
-			number: '4111111111111111',
+			number: '4111111111111111', // https://docs.moyasar.com/guides/card-payments/test-cards
 			cvc: '966',
 			month: 1,
 			year: 2030,
 		},
-		callback_url: 'https://example.com/callback',
+		callback_url: 'https://example.com/callback', // Redirect URL after payment to handle status
 	},
 })
 

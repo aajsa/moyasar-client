@@ -11,7 +11,10 @@
     },
     "packages/moyasar-client": {
       "name": "@aajsa/moyasar-client",
-      "version": "0.7.3",
+      "version": "0.7.4",
+      "devDependencies": {
+        "zod": "^3.25.67",
+      },
       "peerDependencies": {
         "zod": "^3.25.67",
       },

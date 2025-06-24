@@ -1,24 +1,34 @@
 import type { z } from 'zod/v4-mini'
-import type { ApiHandler, Prettify, RouteOptions } from './types'
-
+import { apiUrl } from './env'
+import type { Prettify, RouteOptions } from './types'
 export const routeHandler = <T extends RouteOptions>(
-	baseUrl: string,
 	route: T,
 	apiKey?: string,
 	fetchOptions?: RequestInit,
 	disableValidation?: boolean
-): ApiHandler<T> => {
-	return async (input: any): Promise<Prettify<z.infer<T['output']>>> => {
+) => {
+	return async (input: any) => {
 		const { body, query, params } = input ?? {}
 		const { method, path } = route
 
-		if (!disableValidation) {
-			route.input?.parse?.(body)
-			route.params?.parse?.(params)
-			route.query?.parse?.(query)
+		// Validation
+		try {
+			if (!disableValidation) {
+				route.input?.parse?.(body)
+				route.params?.parse?.(params)
+				route.query?.parse?.(query)
+			}
+		} catch (e) {
+			throw new Error(`Validation failed: ${(e as Error).message}`)
 		}
 
-		let url = baseUrl + (path.includes(':') ? path.replace(':id', params.id) : path)
+		// Build URL
+		let url = apiUrl + path
+		if (params) {
+			url = url.replace(/:([a-zA-Z0-9_]+)/g, (_, id) => {
+				return encodeURIComponent(params[id])
+			})
+		}
 
 		if (query) {
 			const searchParams = new URLSearchParams()
@@ -30,10 +40,11 @@ export const routeHandler = <T extends RouteOptions>(
 			}
 		}
 
+		// Request config
 		const headers: Record<string, any> = {
 			Accept: 'application/json',
-			...(apiKey ? { Authorization: `Basic ${btoa(`${apiKey}:`)}` } : {}),
-			...(body ? { 'Content-Type': 'application/json' } : {}),
+			'Content-Type': 'application/json',
+			Authorization: `Basic ${btoa(`${apiKey}:`)}`,
 			...fetchOptions?.headers,
 		}
 
@@ -44,12 +55,11 @@ export const routeHandler = <T extends RouteOptions>(
 			body: body ? JSON.stringify(body) : undefined,
 		}
 
-		return await fetch(url, config).then(async (response) => {
-			const data = await response.json()
-			if (!response.ok) {
-				return data as any
-			}
-			return data
-		})
+		// Make request
+		const response = await fetch(url, config)
+		const data = await response.json()
+
+		if (response.ok) return data as Prettify<z.infer<T['output']>>
+		return data
 	}
 }

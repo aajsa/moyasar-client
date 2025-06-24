@@ -19,4 +19,4 @@ export const schema = {
 	...applePayEndpoints,
 	...webhooksEndpoints,
 	...transfersEndpoints,
-}
+} as const
